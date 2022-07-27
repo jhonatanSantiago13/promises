@@ -290,3 +290,26 @@ agetName("jhonatanSantiago13");
 
 const message = nombre => console.log(`hola ${nombre}`);
 
+const myName =  () =>{
+
+	return new Promise((resolve,reject)=>{
+
+		const name = prompt("Escribe tu nombre");
+
+		if (name){
+
+			resolve(name);
+
+		}else{
+
+			reject(new Error("error al ingresar el nombre"));
+
+		}
+
+	})
+
+}
+
+
+myName()
+      .then(name=> message(name));
