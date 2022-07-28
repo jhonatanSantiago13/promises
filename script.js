@@ -283,7 +283,7 @@ const agetName = async(username) =>{
 
 }
 
-agetName("jhonatanSantiago13");
+// agetName("jhonatanSantiago13");
 
 
 /**/
@@ -311,5 +311,34 @@ const myName =  () =>{
 }
 
 
-myName()
-      .then(name=> message(name));
+// myName()
+//       .then(name=> message(name));
+
+
+ const mensaje = async ()=>{
+
+ 	try {
+
+ 		const nombre = await prompt("escribe tu nombre");
+
+ 		if (nombre){
+
+ 			message(nombre);
+
+ 		}else{
+
+ 			console.error(new Error("error al recibir el nombre"));
+
+ 		}
+
+
+
+ 	} catch(e) {
+
+ 		console.log(e);
+
+ 	}
+
+ }
+
+ mensaje();
