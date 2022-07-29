@@ -33,7 +33,7 @@ $datos = array(
           "marca" => "bimbo",
           "precio" => 20.00
 
-	)
+	),
 
 	5 => array(
 
@@ -60,49 +60,65 @@ $datos = array(
 
 	),
 
-	   8 => array(
+	8 => array(
 
           "item" => "Danonino",
           "marca" => "Danone",
-          "precio" => 30.00
+          "precio" => 10.00
 
 	)
 
 );
 
 
-$data = "7,8";
+$data = $_POST["ids"];
+
+// $data = "7,8";
 
 $data = explode(",", $data);
 
 $response = "";
 
+// $response = [];
+
+
 foreach ($datos as $idProducto => $detalles) {
+
 
 	  if (in_array($idProducto, $data)) {
 
-	  		$temp = `
-	  		,{
-	  		"id":$idProducto,`;
+	  		$temp = '
+	  		{
+	  		"id":'.$idProducto.',';
+
+	  		
 
 	  		foreach ($detalles as $index => $value) {
 
-	  			$temp.= `"$index":$value,`;
+	  			$temp.= '"'.$index.'":"'.$value.'",';
 
 
 	  		}
 
-       substr($myString, 0, -1);
+            $temp = substr($temp, 0, -1);
 
-	   array_push($response, $temp);
+            $temp .= '},';
 
-	   $temp = [];
+	        $response .= $temp;
+ 
+	   	    $temp = [];
 
 	  }
 
 }
 
-echo json_encode($response);
+$response = "[".substr($response, 0, -1)."]";
+
+echo $response;
+
+
+
+
 
 
  ?>

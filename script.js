@@ -341,4 +341,32 @@ const myName =  () =>{
 
  }
 
- mensaje();
+ // mensaje();
+
+
+/*Prueba Api*/
+
+const miApi = (valores)=>{
+
+	const url = "api.php";
+
+	const data =  new FormData();
+
+	data.append('ids', valores);
+
+	fetch(url,{
+       
+        method: "post",
+        body: data
+
+	})
+	.then(response => response.text())
+	.then(response =>{
+             
+           console.log("response", JSON.parse(response));
+
+	})
+
+}
+
+miApi("7,8");
