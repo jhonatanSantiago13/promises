@@ -348,8 +348,33 @@ const leerTxt = (url) =>{
 }
 
 
-leerTxt("numero.txt")
-       .then(value=> console.log(value));
+/*leerTxt("numero.txt")
+       .then(value=> toNumber(value))
+       .then(doble)
+       .then(print);*/
+
+
+const numeros = async(url) =>{
+
+	try {
+
+		const response = await leerTxt(url);
+
+		numero = toNumber(response);
+
+		numero = doble(numero);
+
+		console.log(numero);
+
+	} catch(e) {
+
+		console.log(e);
+
+	}
+
+}
+
+numeros("numero.txt");
 
 
 
