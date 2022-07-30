@@ -370,3 +370,5 @@ const miApi = (valores)=>{
 }
 
 miApi("7,8");
+
+/*https://clarity.com.mx/manager/tools/api.php*/

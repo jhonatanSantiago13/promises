@@ -374,7 +374,7 @@ const numeros = async(url) =>{
 
 }
 
-numeros("numero.txt");
+// numeros("numero.txt");
 
 
 
@@ -402,3 +402,35 @@ const usuarioGit = (username) =>{
 // usuarioGit("jhonatanSantiago13");
 
 
+const gitAsync = async (username) =>{
+
+	try {
+		const url = `https://api.github.com/users/${username}`;
+
+		const response = await fetch(url,{
+			method: "get"	
+		})
+
+		const data = await response.json();
+
+		if (data.name != null) {
+
+			console.log(data.name);
+
+		}else {
+			
+           console.error(new Error("no se ha encotrado el ususario"));
+
+		}
+
+
+	} catch(e) {
+		
+
+		console.log(e);
+	}
+
+
+}
+
+gitAsync("jhonatanSantiago13");
