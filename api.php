@@ -1,5 +1,6 @@
 <?php
 
+
 $datos = array(
 
 	1 => array(
@@ -13,9 +14,9 @@ $datos = array(
 
 	2 => array(
 
-          "item" => "soda",
-          "marca" => "cocacola",
-          "precio" => 30.00
+          "item" => "jugo",
+          "marca" => "jumex",
+          "precio" => 25.00
 
 	),
 
@@ -70,56 +71,87 @@ $datos = array(
 
 );
 
+$tipo = $_POST["tipo"];
 
 $data = $_POST["ids"];
 
-// $data = "7,8";
+if ($tipo == "all") {
 
-$data = explode(",", $data);
+		$response = "";
 
-$response = "";
+		foreach ($datos as $idProducto => $detalles) {
 
-// $response = [];
+			$temp = '
+				  {
+				  	"id":'.$idProducto.',';
+
+		    foreach ($detalles as $index => $value) {
+
+				  $temp.= '"'.$index.'":"'.$value.'",';
+
+		    }
+
+		    $temp = substr($temp, 0, -1);
+
+			$temp .= '},';
+
+		    $response .= $temp;
+
+		    $temp = [];
+
+		}
+
+		$response = "[".substr($response, 0, -1)."]";
+
+		echo $response;
 
 
-foreach ($datos as $idProducto => $detalles) {
+}else{
+
+		// $data = "7,8";
+
+		$data = explode(",", $data);
+
+		$response = "";
+
+		// $response = [];
 
 
-	  if (in_array($idProducto, $data)) {
-
-	  		$temp = '
-	  		{
-	  		"id":'.$idProducto.',';
-
-	  		
-
-	  		foreach ($detalles as $index => $value) {
-
-	  			$temp.= '"'.$index.'":"'.$value.'",';
+		foreach ($datos as $idProducto => $detalles) {
 
 
-	  		}
+			  if (in_array($idProducto, $data)) {
 
-            $temp = substr($temp, 0, -1);
+			  		$temp = '
+			  		{
+			  		"id":'.$idProducto.',';
 
-            $temp .= '},';
 
-	        $response .= $temp;
- 
-	   	    $temp = [];
 
-	  }
+			  		foreach ($detalles as $index => $value) {
+
+			  			$temp.= '"'.$index.'":"'.$value.'",';
+
+
+			  		}
+
+		            $temp = substr($temp, 0, -1);
+
+		            $temp .= '},';
+
+			        $response .= $temp;
+
+			   	    $temp = [];
+
+			  }
+
+		}
+
+		$response = "[".substr($response, 0, -1)."]";
+
+		echo $response;
 
 }
-
-$response = "[".substr($response, 0, -1)."]";
-
-echo $response;
-
-
-
-
-
 
  ?>
 
