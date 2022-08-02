@@ -55,10 +55,36 @@ const boton = document.getElementById("consultar");
 
 	items = items.toString();
 
-	getItems(items);
+	maquetar(items);
 
 
 })
+
+
+const maquetar = async (items) =>{
+
+	const data = await getItems(items);
+
+	let tabla = document.querySelector(".tabla");
+
+	tabla.innerHTML = `<tr>
+						 <th>ID</th>
+						 <th>NOMBRE</th>
+						 <th>MARCA</th>
+						 <th>PRECIO</th>
+					   </tr>`;
+
+	data.forEach((value, index)=>{
+
+		tabla.innerHTML += `<tr>
+								<td>${value.id}</td>
+								<td>${value.item}</td>
+								<td>${value.marca}</td>
+								<td>${value.precio}</td>
+							</tr>`;
+
+	})
+}
 
 
 const getItems = async (items) =>{
@@ -78,6 +104,9 @@ const getItems = async (items) =>{
 
 	const datos = JSON.parse(data);
 
-	console.log("datos api", datos);
+	// console.log("datos api", datos);
+
+	return datos;
 
 }
+
